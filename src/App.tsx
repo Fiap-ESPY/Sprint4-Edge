@@ -28,7 +28,7 @@ const App = () => {
       .catch((error) => {
         console.error("Erro ao buscar luminosity:", error);
       });
-  }, 3000);
+  }, 1000);
 
 
   return (

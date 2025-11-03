@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+# 🧭 Projeto: Contador de Gols com ESP32 e Interface Web (Vite + TypeScript)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📘 Descrição Geral
 
-Currently, two official plugins are available:
+Este projeto utiliza um **ESP32** conectado a um sensor **ultrassônico HC-SR04** e um **display LCD 16x2** para detectar e contabilizar **gols** automaticamente.  
+A cada detecção, o ESP32 **incrementa a contagem de gols** e **envia os dados para uma interface web** desenvolvida em **Vite + TypeScript**, onde os valores são exibidos e atualizados em tempo real.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Essa aplicação demonstra a integração entre **hardware e software**, unindo o controle físico com uma **visualização moderna via navegador**, ideal para uso em mini partidas, robôs goleiros, ou jogos interativos.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ⚙️ Componentes Utilizados
 
-## Expanding the ESLint configuration
+### 🧩 Hardware
+- ESP32 DevKit
+- Sensor Ultrassônico HC-SR04 (para detectar a passagem da bola)
+- Display LCD 16x2 (para exibir o placar)
+- Protoboard e Jumpers
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 💻 Software
+- Arduino IDE (para o código do ESP32)
+- Node.js e npm
+- Vite (framework frontend)
+- TypeScript
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## ⚽ Funcionamento
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. O **sensor ultrassônico** detecta a passagem da bola pelo gol.  
+2. Quando a distância medida é menor que um valor pré-definido, o sistema **incrementa o contador de gols**.  
+3. O valor é mostrado:
+   - No **display LCD físico**, conectado ao ESP32;
+   - Na **interface web**, atualizada automaticamente via Wi-Fi (HTTP ou WebSocket).
+4. O sistema pode ser expandido para dois sensores (gols de dois times).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🔌 Esquema de Ligações
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+![Esquema do circuito](/src/assets/arduino.png)
+
+### Conexões do HC-SR04
+| Pino | ESP32 |
+|------|--------|
+| VCC  | 5V     |
+| GND  | GND    |
+| TRIG | GPIO 5 |
+| ECHO | GPIO 18 |
+
+### Conexões do LCD (I2C)
+| Pino | ESP32 |
+|------|--------|
+| VCC  | 5V     |
+| GND  | GND    |
+| SDA  | GPIO 21 |
+| SCL  | GPIO 22 |
+
+---
+
