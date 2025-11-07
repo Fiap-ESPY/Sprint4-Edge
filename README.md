@@ -36,6 +36,12 @@ Essa aplicação demonstra a integração entre **hardware e software**, unindo 
 
 ---
 
+## Video Funcionamento
+
+![Demonstração](/src/assets/arduino.gif)
+
+---
+
 ## 🔌 Esquema de Ligações
 
 ![Esquema do circuito](/src/assets/arduino.png)
