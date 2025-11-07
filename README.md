@@ -40,6 +40,8 @@ Essa aplicação demonstra a integração entre **hardware e software**, unindo 
 
 ![Demonstração](/src/assets/arduino.gif)
 
+**[Link Video Youtube](https://youtu.be/ZlVwVg_KEDI?si=BIApOe-KIcgILvbD)**
+
 ---
 
 ## 🔌 Esquema de Ligações
